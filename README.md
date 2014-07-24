@@ -1,0 +1,4 @@
+SQUARELAND2.0
+=============
+
+We introduce the new version of our virtual environment (VE) Squareland. As its predecessor it enables researches to create human wayfinding experiments with variations in route length and complexity, as well as, in the availability of route information and landmarks. A newly developed aspect is that test participants can be given active movement control. Also it now is much easier to create experiments in which participants are passively moved through the virtual environment. Squareland 2.0 comes as a standalone executable file with easy setup controls. It was programmed in the game engine Unity (Unity Technologies©) and is licensed under the General Public License (GNU). It is highly adjustable and usable for many research questions in spatial cognition science.
