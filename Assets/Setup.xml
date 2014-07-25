@@ -1,0 +1,58 @@
+<squareland2.0>
+	
+	<settings>
+		<geometrie>
+			<maze rows="10" columns="10" borders="1" />
+			<blocks width="15" height="3.5" landmark_width="2" landmark_height="1.392" />
+			<paths width="4" />
+		</geometrie>
+		
+		<textures>
+			<blocks color="200.200.200" />
+			<!-- <blocks color="255.255.255" file="Assets/Textures/brick.jpg" tiling_x="8" tiling_y="8" /> -->
+			<!-- <surface file="Assets/Textures/surface2.jpg" tiling_x="400" tiling_y="400" /> -->
+			<sky color="0.87.200" />
+		</textures>
+		
+		<camera field_of_view="40" far_clip_plane="200" eye_height="1.7" />
+		
+		<haze enable="1" add_meters="2" />
+		
+		<instructions min_duration="1000" />
+		
+		<overlays x="0" y="-60" text_maximum_width="200" font_size="18" />
+		
+		<movement speed="2" stop_meters="4.2" />
+	</settings>
+	
+	<routes>
+		<route name="1" start="1;1" end="2;3">
+			<intersection waypoint="1;2">
+				<landmark cube="1" file="Assets/Textures/Pictograms/1.jpg" />
+				<landmark cube="2" file="Assets/Textures/Pictograms/1.jpg" />
+				<landmark cube="3" file="Assets/Textures/Pictograms/1.jpg" />
+				<landmark cube="4" file="Assets/Textures/Pictograms/1.jpg" />
+				<overlay text="text" />
+			</intersection>
+			<intersection waypoint="2;2">
+				<landmark cube="1" file="Assets/Textures/Pictograms/2.jpg" />
+				<landmark cube="2" file="Assets/Textures/Pictograms/2.jpg" />
+				<landmark cube="3" file="Assets/Textures/Pictograms/2.jpg" />
+				<landmark cube="4" file="Assets/Textures/Pictograms/2.jpg" />
+			</intersection>
+		</route>
+	</routes>
+	
+	<procedure>
+		<trial>
+			<instructions>
+				<instruction file="Assets/Instructions/Folie1.jpg" />
+			</instructions>
+			
+			<crosslines duration="1000" />
+
+			<squareland route="1" perform_stop="decisionStop" />
+		</trial>
+	</procedure>
+	
+</squareland2.0>
