@@ -67,7 +67,7 @@ namespace SquarelandSystem {
 								overlay = new Overlay(node);
 								if (overlay.appearsAt == "timeStop") {
 									intersection.overlayTimeStop = overlay;
-								} else {
+								} else if (overlay.appearsAt == "decisionStop") {
 									intersection.overlayDecisionStop = overlay;
 								}
 								break;

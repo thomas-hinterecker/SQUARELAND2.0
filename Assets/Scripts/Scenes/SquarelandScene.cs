@@ -36,6 +36,9 @@ public class SquarelandScene : ResponseListener {
 	protected float horizontalInput = 0;
 	protected float verticalInput = 0;
 
+	/**
+	 * 
+	 */
 	void Awake () {
 		squareland = (Squareland) Controller.procedure.GetCurrentTrial().GetCurrentCommand();
 
@@ -57,6 +60,9 @@ public class SquarelandScene : ResponseListener {
 		Screen.showCursor = false;
 	}
 
+	/**
+	 * 
+	 */
 	protected void HazeSettings () {
 		if (hazeSetting.enable == true) {
 			RenderSettings.fog = true;
@@ -66,12 +72,18 @@ public class SquarelandScene : ResponseListener {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	void Start () {
 		LoadRoute();
-		InitPlayerPosition();
+		InitPlayerPosition(0);
 		CreateGUI();
 	}
-	
+
+	/**
+	 * 
+	 */
 	void OnDrawGizmos() {
 		if (route != null) {
 			Gizmos.color = Color.red;
@@ -81,21 +93,30 @@ public class SquarelandScene : ResponseListener {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	protected void LoadRoute () {
 		route = squareland.route;
 		if (route != null) {
 			route.LoadRoute(squareland.startFromEnd, squareland.firstIntersection, squareland.numIntersections);
 		}
 	}
-	
-	protected void InitPlayerPosition () {
-		transform.position = route.pathObjects[0].transform.position;
+
+	/**
+	 * 
+	 */
+	protected void InitPlayerPosition (int position) {
+		transform.position = route.pathObjects[position].transform.position;
 		transform.LookAt(route.pathObjects[route.currentPathObject + 1]);
 		
 		Camera.main.transform.position = transform.position;
-		Camera.main.transform.LookAt(route.pathObjects[1].transform);
+		Camera.main.transform.LookAt(route.pathObjects[position + 1].transform);
 	}
-	
+
+	/**
+	 * 
+	 */
 	protected void CreateGUI () {
 		Vector3 position = new Vector3(0.5f, 0.8f, 0.0f);
 		
@@ -140,17 +161,27 @@ public class SquarelandScene : ResponseListener {
 		timeText.color = Color.black;
 		timeText.enabled = false;*/
 	}
-	
+
+	/**
+	 * 
+	 */
 	void Update () {
 		Controller.timeSinceStart += Time.deltaTime;
 
-		if (false == pathPause) {
-			WalkPath();
+		if (false == squareland.pointing) {
+			if (false == pathPause) {
+				WalkPath();
+			} else {
+				PathPause();
+			}
 		} else {
-			PathPause();
+			DoPointing();
 		}
 	}
-	
+
+	/**
+	 * 
+	 */
 	protected void WalkPath () {
 		Vector3 moveDirection = transform.TransformDirection(Vector3.forward);
 
@@ -213,6 +244,9 @@ public class SquarelandScene : ResponseListener {
 		responseListener();
 	}
 
+	/**
+	 * 
+	 */
 	protected void PathPause () {
 		switch (squareland.performStop) {
 		case "timeStop":
@@ -223,14 +257,17 @@ public class SquarelandScene : ResponseListener {
 			break;
 		}
 	}
-	
+
+	/**
+	 * 
+	 */
 	protected void TimeStop () {;
 		Overlay overlay = null;
-		
+		Debug.Log(route.timeStopOverlays);
 		if (route.timeStopOverlays.ContainsKey(route.currentWaypoint)) {
 			overlay = (Overlay) route.timeStopOverlays[route.currentWaypoint];
 		}
-		
+		Debug.Log("test");
 		if (overlay != null) {
 			SetOverlay(overlay);
 		}
@@ -254,7 +291,10 @@ public class SquarelandScene : ResponseListener {
 		}
 		pathPauseTime += Time.deltaTime;
 	}
-	
+
+	/**
+	 * 
+	 */
 	protected void WaitForDecision () {
 		Overlay overlay = null;
 		pathPause = true;
@@ -284,6 +324,9 @@ public class SquarelandScene : ResponseListener {
 		pathPauseTime += Time.deltaTime;
 	}
 
+	/**
+	 * 
+	 */
 	protected void WaitForDecisionAfterInput () {
 		if (horizontalInput > 0) {
 			Debug.Log("Key pressed: Right ");
@@ -309,6 +352,9 @@ public class SquarelandScene : ResponseListener {
 		ContinueWalk();
 	}
 
+	/**
+	 * 
+	 */
 	protected void ContinueWalk () {
 		if (movingForward == true && route.currentPathObject < route.pathObjects.Count - 1) {
 			route.currentPathObject++;
@@ -321,7 +367,78 @@ public class SquarelandScene : ResponseListener {
 			}
 		}
 	}
-	
+
+	/**
+	 * 
+	 */
+	protected bool pointingPreparationsDone = false;
+
+	/**
+	 * 
+	 */
+	protected float pointingCorrectRotation = 0.0f;
+
+	/**
+	 * 
+	 */
+	protected void pointingPreparations () {
+		Transform localPosition = route.waypoints[squareland.pointingStartLocation];
+		Transform targetPosition = route.waypoints[squareland.pointingToLocation];
+
+		Transform previousPosition = route.waypoints[squareland.pointingStartLocation - 1];
+
+		GameObject player = GameObject.FindGameObjectWithTag("Player");
+		Camera.main.transform.position = player.transform.position = localPosition.position;
+		Camera.main.transform.LookAt(previousPosition);
+		Debug.Log(Camera.main.transform.rotation.eulerAngles.y);
+		Camera.main.transform.Rotate(new Vector3(0, 180, 0));
+
+		Quaternion rotate = Quaternion.LookRotation(targetPosition.position - Camera.main.transform.position);  //  This is the amount to rotate
+		pointingCorrectRotation = rotate.eulerAngles.y;
+
+		Debug.Log(pointingCorrectRotation);
+
+		trial.responses.SetTimeRecorder();
+	}
+
+	/**
+	 * 
+	 */
+	protected void DoPointing () {
+
+		if (false == pointingPreparationsDone) {
+			pointingPreparations();
+			pointingPreparationsDone = true;
+		}
+
+		horizontalInput = Input.GetAxisRaw("Horizontal");
+
+		float speed = 25.0f;
+
+		if (horizontalInput != 0) {
+			Debug.Log(horizontalInput);
+
+			Vector3 v3 = new Vector3(0.0f, horizontalInput, 0.0f);
+			Camera.main.transform.Rotate(v3 * speed * Time.deltaTime);
+			//Debug.Log(Camera.main.transform.rotation.y);
+
+		}
+
+		if (Input.GetButtonDown("Continue") == true) {
+			Debug.Log ("Continue");
+			float set_rotation = Camera.main.transform.rotation.eulerAngles.y;
+			Debug.Log (Camera.main.transform.rotation.eulerAngles.y);
+
+			trial.responses.NextEvent("Pointing: from " + route.waypoints[squareland.pointingStartLocation].name + " to " + route.waypoints[squareland.pointingToLocation].name, false, "Correct rotation: " + pointingCorrectRotation.ToString() + "; Set rotation: " + set_rotation);
+			trial.responses.Add(new Response("Continue"));
+
+			Controller.procedure.GetCurrentTrial().LoadNextCommand();
+		}
+	}
+
+	/**
+	 * 
+	 */
 	protected void SetOverlay (Overlay overlay) {
 		float overlay_file_width = 0;
 		float overlay_file_height = 0;
@@ -353,6 +470,9 @@ public class SquarelandScene : ResponseListener {
 		}
 	}
 
+	/**
+	 * 
+	 */
 	public static Rect FormatGuiTextArea(GUIText guiText, float maxAreaWidth) {
 		string[] words = guiText.text.Split(' ');
 		string result = "";

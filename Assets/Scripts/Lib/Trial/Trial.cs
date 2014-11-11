@@ -7,10 +7,19 @@ namespace SquarelandSystem {
 
 	public class Trial {
 
+		/**
+		 * 
+		 */
 		public int trialNum;
 
+		/**
+		 * 
+		 */
 		public List<Command> commands = new List<Command>();
 
+		/**
+		 * 
+		 */
 		public int currentCommand = -1;
 
 		/**
@@ -23,7 +32,7 @@ namespace SquarelandSystem {
 		 */
 		public Trial (int given_num, XmlNode trialNode) {
 			XmlNode commandNode;
-			Command command;
+			Command command = null;
 			string name;
 
 			int command_count = 0;
@@ -36,6 +45,9 @@ namespace SquarelandSystem {
 					name = commandNode.Name;
 
 					switch (commandNode.Name) {
+					case "settings":
+						//command = new Squareland(++command_count, name, commandNode);
+						break;
 					case "squareland":
 						command = new Squareland(++command_count, name, commandNode);
 						break;
@@ -47,9 +59,6 @@ namespace SquarelandSystem {
 						break;
 					case "instructions":
 						command = new Instructions(++command_count, name, commandNode);
-						break;
-					default:
-						command = new Command(++command_count, name, commandNode);
 						break;
 					}
 					

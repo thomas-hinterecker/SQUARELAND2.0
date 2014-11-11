@@ -11,7 +11,7 @@ public class LogScene : MonoBehaviour {
 		Screen.showCursor = false;
 		Trial trial = Controller.procedure.GetCurrentTrial();
 		if (WriteReponsesFile(trial.responses, "", trial) == true) { // && WriteReponsesFile(trial.responses_all, "_keyboard", trial) == true
-			Controller.procedure.GetCurrentTrial().LoadNextCommand();
+			Controller.procedure.LoadNextTrial();
 		}
 	}
 	

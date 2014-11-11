@@ -5,32 +5,91 @@ using System.Collections;
 namespace SquarelandSystem {
 	public class Squareland : Command {
 		
+		/**
+		 * 
+		 */		
 		public Route route;
 		
+		/**
+		 * 
+		 */		
 		public int route_num = 0;
 		
-		public string performStop = "";
+		/**
+		 * 
+		 */		
+		public string performStop = "timeStop";
 		
+		/**
+		 * 
+		 */		
 		public int decisionStopAxis = 1;
 		
+		/**
+		 * 
+		 */		
 		public float timeStopDuration = 0.0f;
 		
+		/**
+		 * 
+		 */		
 		public bool startFromEnd = false;
 		
+		/**
+		 * 
+		 */		
 		public int firstIntersection = 0;
 		
+		/**
+		 * 
+		 */		
 		public int numIntersections = 0;
-	
+		
+		/**
+		 * 
+		 */	
 		public string movementMode = "";
-
+		
+		/**
+		 * 
+		 */
 		public bool record = false;
 
+		/**
+		 * 
+		 */
 		public string recordFolderName = "";
 
+		/**
+		 * 
+		 */
+		public bool pointing = false;
+
+		/**
+		 * 
+		 */		
+		public int pointingStartLocation = 0;
+		
+		/**
+		 * 
+		 */		
+		public int pointingToLocation = 0;
+
+		/**
+		 * 
+		 */
 		public Squareland (int given_num, string given_name, XmlNode command_item_node) {
 			num = given_num;
 			name = given_name;
-			
+
+			ReadAttributes(command_item_node);
+			ReadChildNodes(command_item_node);
+		}
+
+		/**
+		 * 
+		 */
+		protected void ReadAttributes (XmlNode command_item_node) {
 			XmlAttributeCollection attrColl = command_item_node.Attributes;
 			
 			if (attrColl["route"] != null) {
@@ -69,15 +128,45 @@ namespace SquarelandSystem {
 			} else {
 				numIntersections = -1;
 			}
-
+			
 			if (attrColl["record"] != null) {
 				if (int.Parse(attrColl["record"].Value) == 1) {
 					record = true;
 				}
 			}
-
+			
 			if (attrColl["record_folder_name"] != null) {
 				recordFolderName = attrColl["record_folder_name"].Value;
+			}
+		}
+
+		/**
+		 * 
+		 */
+		protected void ReadChildNodes (XmlNode command_item_node) {
+			XmlNode commandChildNode;
+			XmlAttributeCollection attrColl;
+
+			if (command_item_node.HasChildNodes) {
+				for (int i = 0; i < command_item_node.ChildNodes.Count; ++i) {
+					commandChildNode = command_item_node.ChildNodes[i];
+					
+					switch (commandChildNode.Name) {
+					case "pointing":
+						pointing = true;
+
+						attrColl = commandChildNode.Attributes;
+
+						if (attrColl["location"] != null) {
+							pointingStartLocation = int.Parse(attrColl["location"].Value) - 1;
+						}
+						
+						if (attrColl["point_to"] != null) {
+							pointingToLocation = int.Parse(attrColl["point_to"].Value) - 1;
+						}
+						break;
+					}
+				}
 			}
 		}
 	}
