@@ -263,11 +263,11 @@ public class SquarelandScene : ResponseListener {
 	 */
 	protected void TimeStop () {;
 		Overlay overlay = null;
-		Debug.Log(route.timeStopOverlays);
+
 		if (route.timeStopOverlays.ContainsKey(route.currentWaypoint)) {
 			overlay = (Overlay) route.timeStopOverlays[route.currentWaypoint];
 		}
-		Debug.Log("test");
+
 		if (overlay != null) {
 			SetOverlay(overlay);
 		}
@@ -462,7 +462,7 @@ public class SquarelandScene : ResponseListener {
 		} else if (overlay.text != "") {
 			pauseText.text = overlay.text;
 			Rect rect = FormatGuiTextArea(pauseText, overlay.textMaximumWidth);
-			float text_width = rect.width + 10;
+			float text_width = rect.width + 25;
 			float text_height = rect.height + 15;
 			pauseTextBackground.pixelInset = new Rect((text_width / -2) + position_x, (text_height / -2) + position_y, text_width, text_height);
 			pauseTextBackground.enabled = true;

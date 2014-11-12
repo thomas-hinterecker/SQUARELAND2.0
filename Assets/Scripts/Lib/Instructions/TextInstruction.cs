@@ -11,9 +11,8 @@ namespace SquarelandSystem {
 		public TextInstruction (XmlNode instructionNode) {
 			XmlAttributeCollection attrColl = instructionNode.Attributes;
 
-			if (attrColl["text"] != null) {
-				text = attrColl["text"].Value;
-			}
+			text = instructionNode.InnerText;
+			Debug.Log (text);
 
 			if (attrColl["min_duration"] != null) {
 				minDuration = float.Parse(attrColl["min_duration"].Value);

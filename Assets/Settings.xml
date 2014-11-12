@@ -5,7 +5,7 @@
 		<settings>
 			<geometrie>
 				<maze rows="10" columns="10" borders="1" />
-				<blocks width="15" height="3.5" landmark_width="2" landmark_height="1.392" />
+				<blocks width="15" height="3.5" landmark_width="2" landmark_height="1.67" />
 				<paths width="4" />
 			</geometrie>
 			
@@ -28,7 +28,7 @@
 		</settings>
 		
 		<routes>
-			<route name="1" start="1;1" end="5;2">
+			<route name="1" start="1;1" end="1;6">
 				<intersection waypoint="1;2">
 					<landmark cube="1" file="Assets/Textures/Pictograms/1.jpg" />
 					<landmark cube="2" file="Assets/Textures/Pictograms/1.jpg" />
@@ -62,23 +62,23 @@
 					<landmark cube="2" file="Assets/Textures/Pictograms/5.jpg" />
 					<landmark cube="3" file="Assets/Textures/Pictograms/5.jpg" />
 					<landmark cube="4" file="Assets/Textures/Pictograms/5.jpg" />
-					<overlay text="Airplane" appears_at="timeStop" />
+					<overlay text="Flugzeug" appears_at="timeStop" />
 				</intersection>	
-				<intersection waypoint="4;4">
+				<intersection waypoint="3;5">
 					<landmark cube="1" file="Assets/Textures/Pictograms/15.jpg" />
 					<landmark cube="2" file="Assets/Textures/Pictograms/15.jpg" />
 					<landmark cube="3" file="Assets/Textures/Pictograms/15.jpg" />
 					<landmark cube="4" file="Assets/Textures/Pictograms/15.jpg" />
 					<overlay text="Brief" appears_at="timeStop" />
 				</intersection>
-				<intersection waypoint="4;3">
+				<intersection waypoint="2;5">
 					<landmark cube="1" file="Assets/Textures/Pictograms/11.jpg" />
 					<landmark cube="2" file="Assets/Textures/Pictograms/11.jpg" />
 					<landmark cube="3" file="Assets/Textures/Pictograms/11.jpg" />
 					<landmark cube="4" file="Assets/Textures/Pictograms/11.jpg" />
 					<overlay text="Tasse" appears_at="timeStop" />
 				</intersection>
-				<intersection waypoint="4;2">
+				<intersection waypoint="2;6">
 					<landmark cube="1" file="Assets/Textures/Pictograms/8.jpg" />
 					<landmark cube="2" file="Assets/Textures/Pictograms/8.jpg" />
 					<landmark cube="3" file="Assets/Textures/Pictograms/8.jpg" />
