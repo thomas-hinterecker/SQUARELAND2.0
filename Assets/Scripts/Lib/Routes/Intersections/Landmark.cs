@@ -39,6 +39,13 @@ namespace SquarelandSystem {
 		}
 		
 		public void SetFile (string file_string) {
+			if (file_string.StartsWith("{")) {
+				FilesSetting filesSetting = (FilesSetting) Controller.settings["files"];
+				file_string = file_string.Replace("{file:", "");
+				file_string = file_string.Replace("}", "");
+				file_string = filesSetting.files[int.Parse(file_string) - 1];
+			}
+
 			fileName = file_string;
 			byte[] textureData = File.ReadAllBytes(file_string);
 			file = new Texture2D(0, 0);

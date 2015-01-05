@@ -75,6 +75,9 @@ namespace SquarelandSystem {
 												case "instructions":
 													Controller.settings.Add("instructions", new InstructionsSetting(thirdLevelNode));
 													break;
+												case "files":
+													Controller.settings.Add("files", new FilesSetting(thirdLevelNode));
+													break;
 												}
 											}
 										}

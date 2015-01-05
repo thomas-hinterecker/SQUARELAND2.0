@@ -3,38 +3,8 @@
 	<procedure>
 	
 		<trial>
-		
-			<squareland route="1" time_stop_duration="3000" />
-		
-			<instructions>
-				<instruction file="Assets/Instructions/Folie1.jpg" />
-			</instructions>
 			
-			<crosslines duration="1000" />
-		
-			<squareland route="1">
-				<pointing location="2" point_to="5" />
-			</squareland>
-		
-			<instructions>
-				<instruction file="Assets/Instructions/Folie1.jpg" />
-			</instructions>
-			
-			<crosslines duration="1000" />
-
-			<squareland route="1">
-				<pointing location="7" point_to="9" />
-			</squareland>
-			
-			<instructions>
-				<instruction file="Assets/Instructions/Folie1.jpg" />
-			</instructions>
-			
-			<crosslines duration="1000" />
-			
-			<squareland route="1">
-				<pointing location="3" point_to="8" />
-			</squareland>
+			<squareland route="1" />
 			
 		</trial>
 		

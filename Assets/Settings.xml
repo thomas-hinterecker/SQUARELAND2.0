@@ -4,7 +4,7 @@
 	
 		<settings>
 			<geometrie>
-				<maze rows="10" columns="10" borders="1" />
+				<maze rows="20" columns="20" borders="1" />
 				<blocks width="15" height="3.5" landmark_width="2" landmark_height="1.67" />
 				<paths width="4" />
 			</geometrie>
@@ -18,73 +18,40 @@
 			
 			<camera field_of_view="40" far_clip_plane="200" eye_height="1.7" />
 			
-			<haze enable="1" add_meters="2" />
+			<haze enable="0" add_meters="2" />
 			
 			<instructions min_duration="1000" />
 			
 			<overlays x="0" y="-60" text_maximum_width="200" font_size="18" />
 			
-			<movement speed="2" stop_meters="4.2" />
+			<movement speed="1.69" stop_meters="4.2" />
+			
+			<files randomize="1">
+				<file path="Assets/Textures/Pictograms/1.jpg" />
+				<file path="Assets/Textures/Pictograms/2.jpg" />
+			</files>
+			
 		</settings>
 		
 		<routes>
-			<route name="1" start="1;1" end="1;6">
-				<intersection waypoint="1;2">
-					<landmark cube="1" file="Assets/Textures/Pictograms/1.jpg" />
-					<landmark cube="2" file="Assets/Textures/Pictograms/1.jpg" />
-					<landmark cube="3" file="Assets/Textures/Pictograms/1.jpg" />
-					<landmark cube="4" file="Assets/Textures/Pictograms/1.jpg" />
-					<overlay text="Schiff" appears_at="timeStop" />
-				</intersection>
-				<intersection waypoint="2;2">
-					<landmark cube="1" file="Assets/Textures/Pictograms/2.jpg" />
-					<landmark cube="2" file="Assets/Textures/Pictograms/2.jpg" />
-					<landmark cube="3" file="Assets/Textures/Pictograms/2.jpg" />
-					<landmark cube="4" file="Assets/Textures/Pictograms/2.jpg" />
-					<overlay text="Feuerlöscher" appears_at="timeStop" />
-				</intersection>
-				<intersection waypoint="2;3">
-					<landmark cube="1" file="Assets/Textures/Pictograms/13.jpg" />
-					<landmark cube="2" file="Assets/Textures/Pictograms/13.jpg" />
-					<landmark cube="3" file="Assets/Textures/Pictograms/13.jpg" />
-					<landmark cube="4" file="Assets/Textures/Pictograms/13.jpg" />
-					<overlay text="Zug" appears_at="timeStop" />
-				</intersection>
-				<intersection waypoint="2;4">
-					<landmark cube="1" file="Assets/Textures/Pictograms/4.jpg" />
-					<landmark cube="2" file="Assets/Textures/Pictograms/4.jpg" />
-					<landmark cube="3" file="Assets/Textures/Pictograms/4.jpg" />
-					<landmark cube="4" file="Assets/Textures/Pictograms/4.jpg" />
-					<overlay text="Zigarette" appears_at="timeStop" />
-				</intersection>
-				<intersection waypoint="3;4">
-					<landmark cube="1" file="Assets/Textures/Pictograms/5.jpg" />
-					<landmark cube="2" file="Assets/Textures/Pictograms/5.jpg" />
-					<landmark cube="3" file="Assets/Textures/Pictograms/5.jpg" />
-					<landmark cube="4" file="Assets/Textures/Pictograms/5.jpg" />
-					<overlay text="Flugzeug" appears_at="timeStop" />
-				</intersection>	
-				<intersection waypoint="3;5">
-					<landmark cube="1" file="Assets/Textures/Pictograms/15.jpg" />
-					<landmark cube="2" file="Assets/Textures/Pictograms/15.jpg" />
-					<landmark cube="3" file="Assets/Textures/Pictograms/15.jpg" />
-					<landmark cube="4" file="Assets/Textures/Pictograms/15.jpg" />
-					<overlay text="Brief" appears_at="timeStop" />
-				</intersection>
-				<intersection waypoint="2;5">
-					<landmark cube="1" file="Assets/Textures/Pictograms/11.jpg" />
-					<landmark cube="2" file="Assets/Textures/Pictograms/11.jpg" />
-					<landmark cube="3" file="Assets/Textures/Pictograms/11.jpg" />
-					<landmark cube="4" file="Assets/Textures/Pictograms/11.jpg" />
-					<overlay text="Tasse" appears_at="timeStop" />
-				</intersection>
-				<intersection waypoint="2;6">
-					<landmark cube="1" file="Assets/Textures/Pictograms/8.jpg" />
-					<landmark cube="2" file="Assets/Textures/Pictograms/8.jpg" />
-					<landmark cube="3" file="Assets/Textures/Pictograms/8.jpg" />
-					<landmark cube="4" file="Assets/Textures/Pictograms/8.jpg" />
-					<overlay text="Auto" appears_at="timeStop" />
-				</intersection>
+			<route name="1" start="2;1" end="2;19">
+				<intersection waypoint="2;2"></intersection>
+				<intersection waypoint="2;3"></intersection>
+				<intersection waypoint="2;4"></intersection>
+				<intersection waypoint="2;5"></intersection>
+				<intersection waypoint="2;6"></intersection>
+				<intersection waypoint="2;7"></intersection>
+				<intersection waypoint="2;8"></intersection>
+				<intersection waypoint="2;9"></intersection>
+				<intersection waypoint="2;10"></intersection>
+				<intersection waypoint="2;11"></intersection>
+				<intersection waypoint="2;12"></intersection>
+				<intersection waypoint="2;13"></intersection>
+				<intersection waypoint="2;14"></intersection>
+				<intersection waypoint="2;15"></intersection>
+				<intersection waypoint="2;16"></intersection>
+				<intersection waypoint="2;17"></intersection>
+				<intersection waypoint="2;18"></intersection>
 			</route>
 		</routes>
 		
