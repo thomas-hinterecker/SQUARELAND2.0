@@ -33,7 +33,6 @@ namespace SquarelandSystem {
 		protected static void loadSettingsFile () {
 			XmlDocument xmlDoc = new XmlDocument();
 			try {
-				Debug.Log (Controller.path);
 				xmlDoc.Load(Controller.path + '/' + settingsFile);
 				xmlRoot = xmlDoc.FirstChild;
 				XmlNode firstLevelNode, secondLevelNode, thirdLevelNode;
@@ -55,6 +54,32 @@ namespace SquarelandSystem {
 												thirdLevelNode = secondLevelNode.ChildNodes[y];
 
 												switch (thirdLevelNode.Name) {
+												case "screen":
+													XmlAttributeCollection attrColl = thirdLevelNode.Attributes;
+
+													int width = 800;
+													int height = 600;
+
+													if (attrColl["width"] != null) {
+														width = int.Parse(attrColl["width"].Value);
+														height = int.Parse(attrColl["height"].Value);
+													}
+
+													bool fullscreen = true;
+													if (attrColl["fullscreen"].Value == "0"){
+														fullscreen = false;
+													}
+
+													int refresh_rate = 60;
+													if (attrColl["refresh_rate"] != null) {
+														refresh_rate = int.Parse(attrColl["refresh_rate"].Value);
+													}
+
+													Screen.SetResolution(width, height, fullscreen);
+
+													QualitySettings.currentLevel = QualityLevel.Beautiful;
+
+													break;
 												case "camera":
 													Controller.settings.Add("camera", new CameraSetting(thirdLevelNode));
 													break;
@@ -103,7 +128,7 @@ namespace SquarelandSystem {
 			try {
 				xmlDoc.Load("Assets/" + procedureFile);
 				xmlRoot = xmlDoc.FirstChild;
-				XmlNode firstLevelNode, secondLevelNode;
+				XmlNode firstLevelNode;
 				
 				if (xmlRoot.HasChildNodes) {
 					// Go through child elements
