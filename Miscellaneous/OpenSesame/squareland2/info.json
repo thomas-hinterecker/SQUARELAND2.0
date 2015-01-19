@@ -1,0 +1,14 @@
+{
+	"author"	: "Thomas Hinterecker",
+	"url"		: "",
+	"category"	: "Visual stimuli",
+	"comment"	: "",
+	"controls" : [
+		{
+			"type"		: "line_edit",
+			"var"		: "path",
+			"label"		: "Path to SQUARELAND2.0",
+			"tooltip"	: "Fill in the Papth to SQUARELAND2.0"
+		}
+	]
+}
