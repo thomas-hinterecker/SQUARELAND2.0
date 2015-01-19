@@ -104,15 +104,14 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: 03b65c13e91fdbd4e961c3bb1c3ba10f, type: 2}
+  - {fileID: 2100000, guid: d9f2a052a5f65eb49918251d8f5702c5, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!64 &211211277
 MeshCollider:
   m_ObjectHideFlags: 0
@@ -144,6 +143,7 @@ Transform:
   m_LocalScale: {x: 50, y: 1, z: 50}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 0
 --- !u!1 &1345137272
 GameObject:
   m_ObjectHideFlags: 0
@@ -157,8 +157,8 @@ GameObject:
   - 124: {fileID: 1345137274}
   - 81: {fileID: 1345137273}
   - 54: {fileID: 1345137278}
-  - 114: {fileID: 1345137279}
-  - 114: {fileID: 1345137280}
+  - 114: {fileID: 1345137282}
+  - 114: {fileID: 1345137281}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -214,8 +214,11 @@ Camera:
     m_Bits: 4294967295
   m_RenderingPath: -1
   m_TargetTexture: {fileID: 0}
+  m_TargetDisplay: 0
   m_HDR: 0
   m_OcclusionCulling: 1
+  m_StereoConvergence: 10
+  m_StereoSeparation: .0219999999
 --- !u!4 &1345137277
 Transform:
   m_ObjectHideFlags: 0
@@ -227,6 +230,7 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 1
 --- !u!54 &1345137278
 Rigidbody:
   m_ObjectHideFlags: 0
@@ -242,7 +246,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &1345137279
+--- !u!114 &1345137281
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -250,23 +254,23 @@ MonoBehaviour:
   m_GameObject: {fileID: 1345137272}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: cd1c49e5142773c4dbdf8d8fadf2e0d5, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
---- !u!114 &1345137280
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 1345137272}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 98aefff5371120f4886f33d7b5dbdf2a, type: 3}
+  m_Script: {fileID: 11500000, guid: 5b88e1e51fdba2a4d84372b15a10ceb5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   folder: ScreenshotMovieOutput
   frameRate: 25
   sizeMultiplier: 1
+--- !u!114 &1345137282
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1345137272}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 16ab5ce9e1226ea40aa5632c9489c732, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &1426282771
 GameObject:
   m_ObjectHideFlags: 0
@@ -279,7 +283,7 @@ GameObject:
   - 65: {fileID: 1426282773}
   - 23: {fileID: 1426282772}
   - 54: {fileID: 1426282778}
-  - 114: {fileID: 1426282777}
+  - 114: {fileID: 1426282776}
   m_Layer: 0
   m_Name: Player
   m_TagString: Player
@@ -305,9 +309,8 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!65 &1426282773
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -338,7 +341,8 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
---- !u!114 &1426282777
+  m_RootOrder: 2
+--- !u!114 &1426282776
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_PrefabParentObject: {fileID: 0}
@@ -346,11 +350,11 @@ MonoBehaviour:
   m_GameObject: {fileID: 1426282771}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 14fc820dc110e894796140d09e357895, type: 3}
+  m_Script: {fileID: 11500000, guid: 7f16cce3a80a6ec4b9e9e3c6ab138a75, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  cubeMaterial: {fileID: 2100000, guid: e5c801498c05f00489779d3fdeeb1ed1, type: 2}
-  landmarkMaterial: {fileID: 2100000, guid: ccc80ce3107fe2c4fa6c7cf5c964fc29, type: 2}
+  cubeMaterial: {fileID: 2100000, guid: 2b72a3fb99b35e346a6bf743ce41bb78, type: 2}
+  landmarkMaterial: {fileID: 2100000, guid: cd17f62b47f4f684cae146b4a319c688, type: 2}
   waypointToCloneObject: {fileID: 1672297431}
   floorObject: {fileID: 211211275}
 --- !u!54 &1426282778
@@ -403,9 +407,8 @@ Renderer:
   m_UseLightProbes: 0
   m_LightProbeAnchor: {fileID: 0}
   m_ScaleInLightmap: 1
-  m_SortingLayer: 0
-  m_SortingOrder: 0
   m_SortingLayerID: 0
+  m_SortingOrder: 0
 --- !u!33 &1672297434
 MeshFilter:
   m_ObjectHideFlags: 0
@@ -424,3 +427,4 @@ Transform:
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+  m_RootOrder: 3

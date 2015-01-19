@@ -33,7 +33,8 @@ namespace SquarelandSystem {
 		protected static void loadSettingsFile () {
 			XmlDocument xmlDoc = new XmlDocument();
 			try {
-				xmlDoc.Load("Assets/" + settingsFile);
+				Debug.Log (Controller.path);
+				xmlDoc.Load(Controller.path + '/' + settingsFile);
 				xmlRoot = xmlDoc.FirstChild;
 				XmlNode firstLevelNode, secondLevelNode, thirdLevelNode;
 				

@@ -5,7 +5,9 @@ using System.Collections.Generic;
 
 namespace SquarelandSystem {
 	public class Controller {
-		
+
+		public static string path = "";
+
 		public static string participant_id;
 		
 		public static Dictionary<string, Setting> settings = new Dictionary<string, Setting>();
@@ -20,6 +22,13 @@ namespace SquarelandSystem {
 		 *
 		 */
 		public static void StartSquareland () {
+			path = Application.dataPath;
+			if (Application.platform == RuntimePlatform.OSXPlayer) {
+				path += "/../../Assets/";
+			} else if (Application.platform == RuntimePlatform.WindowsPlayer) {
+				path += "/../Assets/";
+			}
+
 			XmlLoader.Load();
 		}
 	}

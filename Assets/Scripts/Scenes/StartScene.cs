@@ -17,8 +17,10 @@ public class StartScene : MonoBehaviour {
 	}
 	
 	void Update () {
-		if (Time.timeSinceLevelLoad * 1000 > startAfter) {
+		//if (Time.timeSinceLevelLoad * 1000 > startAfter) {
+		if (Controller.procedure != null) {
 			Controller.procedure.GetCurrentTrial().LoadNextCommand();
 		}
+		//}
 	}
 }
