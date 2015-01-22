@@ -1,6 +1,11 @@
 # Import the required modules.
-import os
+import shutil
 import subprocess
+from os import chdir
+from os import listdir
+from os.path import isfile, join
+
+import pygame
 import psychopy
 from libopensesame import debug
 from libopensesame.item import item
@@ -59,21 +64,35 @@ class squareland2(item):
 		
 		win = self.experiment.window
 		
-		win.winHandle.minimize() #minimize the PsychoPy window
-		win.fullscr = False #disable fullscreen
-		win.flip() #redraw the (minimized) window
-
+		if self.experiment.canvas_backend == 'psycho':
+			win.winHandle.minimize()
+			#win.fullscr = False 
+			win.flip()
+		else: 
+			pygame.display.iconify()
+		
 		try:
-			os.chdir(self.get('path'))
+			chdir(self.get('path'))
 			subprocess.call([self.get('path') + "\\SQUARELAND2.0.exe"]) #launch external program
 			#print self.get('path') + "\\SQUARELAND2.0.exe"
+		
+			path = self.get('path') + "\\LogFiles\\"
+		
+			for f in listdir(path):
+				f_split = f.split('.')
+				file = join(path, f)
+				if isfile(file) and f_split.pop() == "txt":
+					shutil.copyfile(file, self.get('path') + "\\..\\%s_%s" % (self.get('subject_nr'), f))
 		except WindowsError:
 			print "SQUARELAND2.0 application couldn't be launched!"
-			
-		win.winHandle.maximize() #when external program closes, maximize PsychoPy window again
-		win.fullscr = True 
-		win.winHandle.activate() #re-activate window
-		win.flip() #redraw the newly activated window
+		
+		if self.experiment.canvas_backend == 'psycho':
+			win.winHandle.maximize()
+			#win.fullscr = True 
+			win.winHandle.activate()
+			win.flip()
+		else:
+			pygame.display.set_mode()
 		
 
 class qtsquareland2(squareland2, qtautoplugin):
