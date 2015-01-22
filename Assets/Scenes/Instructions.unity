@@ -170,8 +170,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: f67b1bfe2b5c4cd42abd7710e3e0b8aa, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  InstructionsGuiTexture: {fileID: 0}
-  InstructionsGuiText: {fileID: 0}
+  InstructionsGuiTexture: {fileID: 590129473}
+  InstructionsGuiText: {fileID: 1330777970}
 --- !u!1 &590129473
 GameObject:
   m_ObjectHideFlags: 0

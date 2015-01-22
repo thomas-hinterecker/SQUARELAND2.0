@@ -179,6 +179,7 @@ GameObject:
   m_Component:
   - 4: {fileID: 1543725716}
   - 131: {fileID: 1543725715}
+  - 114: {fileID: 1543725717}
   m_Layer: 0
   m_Name: Crosslines
   m_TagString: Untagged
@@ -193,7 +194,7 @@ GUITexture:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 1543725714}
   m_Enabled: 1
-  m_Texture: {fileID: 2800000, guid: c00458b1b7c3c5443a9de8bb41519f96, type: 3}
+  m_Texture: {fileID: 2800000, guid: 7c964a5c03d52c84b9777ec2684b2845, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: .501960814}
   m_PixelInset:
     serializedVersion: 2
@@ -217,3 +218,14 @@ Transform:
   m_Children: []
   m_Father: {fileID: 0}
   m_RootOrder: 0
+--- !u!114 &1543725717
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 1543725714}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: bc5470b10f0b1d746b05be94e85579aa, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

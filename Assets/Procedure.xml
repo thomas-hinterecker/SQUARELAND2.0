@@ -4,6 +4,8 @@
 	
 		<trial>
 			
+			<crosslines duration="1000" />
+			
 			<squareland route="1" />
 			
 		</trial>

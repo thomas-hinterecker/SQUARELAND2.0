@@ -66,30 +66,39 @@ class squareland2(item):
 		
 		if self.experiment.canvas_backend == 'psycho':
 			win.winHandle.minimize()
-			#win.fullscr = False 
+			win.fullscr = False 
 			win.flip()
 		else: 
 			pygame.display.iconify()
 		
-		try:
-			chdir(self.get('path'))
-			subprocess.call([self.get('path') + "\\SQUARELAND2.0.exe"]) #launch external program
-			#print self.get('path') + "\\SQUARELAND2.0.exe"
-		
-			path = self.get('path') + "\\LogFiles\\"
-		
-			for f in listdir(path):
-				f_split = f.split('.')
-				file = join(path, f)
-				if isfile(file) and f_split.pop() == "txt":
-					shutil.copyfile(file, self.get('path') + "\\..\\%s_%s" % (self.get('subject_nr'), f))
-		except WindowsError:
-			print "SQUARELAND2.0 application couldn't be launched!"
+		if True == True:
+			try:
+				chdir(self.get('path'))
+				subprocess.call([self.get('path') + "\\SQUARELAND2.0.exe"]) #launch external program
+				#print self.get('path') + "\\SQUARELAND2.0.exe"
+			
+				path = self.get('path') + "\\LogFiles\\"
+			
+				for f in listdir(path):
+					f_split = f.split('.')
+					file = join(path, f)
+					if isfile(file) and f_split.pop() == "txt":
+						dst = self.get('path') + "\\..\\%s_" % self.get('subject_nr')
+						if isfile(dst + f) == True:
+							count = 1
+							dst2 = dst + '%s_' % count
+							while isfile(dst2 + f) == True:
+								count += 1
+								dst2 = dst + '%s_' % count
+							dst = dst2
+						shutil.copyfile(file, dst + f)
+			except WindowsError:
+				print "SQUARELAND2.0 application couldn't be launched!"
 		
 		if self.experiment.canvas_backend == 'psycho':
-			win.winHandle.maximize()
-			#win.fullscr = True 
 			win.winHandle.activate()
+			win.winHandle.maximize()
+			win.fullscr = True 
 			win.flip()
 		else:
 			pygame.display.set_mode()
